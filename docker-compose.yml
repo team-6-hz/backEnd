@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  journalentries:
+    image: journalentries
+    build: ./journalentries
+    volumes:
+      - ./journalentries/code:/usr/src/app
+    networks:
+      - msjournalentries
+    ports:
+      - "3010:3010"
+    working_dir: /usr/src/app
+    command: bash -c "npm install && npm run dev"
+
+networks:
+  msjournalentries:
+    driver: bridge
